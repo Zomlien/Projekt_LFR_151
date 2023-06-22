@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+  {% if user.is_authenticated %}
+    <h1>Create Recipe</h1>
+
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Create</button>
+    </form>
+
+    <div class="button-group">
+      <form action="{% url 'recipe_list' %}" method="GET">
+          <button type="submit">Back</button>
+      </form>
+    </div>
+
+  {% else %}
+    <p>Sorry, you must be logged in to see this page</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block page_content %}
+
+{% if user.is_authenticated %}
+
+<h1>{{recipe.title}}</h1>
+<p>Category: {{ recipe.category_id.categoryname }}</p>
+<p>Steps: {{ recipe.directions }}</p>
+<p>Ingredients: {{ recipe.ingredient }}</p>
+<p>Creator: {{ recipe.creator.username }}</p>
+
+<div class="button-group">
+  {% if user == recipe.creator or user.is_superuser %}
+  <form action="{% url 'recipe_edit' pk=recipe.pk %}" method="GET">
+      <button type="submit">Edit</button>
+  </form>
+
+  <form action="{% url 'recipe_delete' pk=recipe.pk %}" method="POST">
+      {% csrf_token %}
+      <button type="submit">Delete</button>
+  </form>
+  {% endif %}
+  <form action="{% url 'recipe_list' %}" method="GET">
+      <button type="submit">Back</button>
+  </form>
+</div>
+
+{% else %}
+<p>Sorry, you must be logged in to see this page</p>
+{% endif %}
+
+{% endblock %}

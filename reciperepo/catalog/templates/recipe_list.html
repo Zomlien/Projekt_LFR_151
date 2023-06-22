@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block page_content %}
+
+{% if user.is_authenticated %}
+
+<h1>recipes</h1>
+
+<div class="button-group">
+    <form action="{% url 'recipe_create' %}" method="GET">
+        <button type="submit">New recipe</button>
+    </form>
+    <form action="{% url 'category_list' %}" method="GET">
+        <button type="submit">View all categories</button>
+    </form>
+</div>
+
+<div class="button-group">
+    <form action="{% url 'recipe_list' %}" method="GET">
+        <select name="category">
+            <option value="">All Categories</option>
+            {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+
+    <form action="{% url 'recipe_list' %}" method="GET" class="search-form">
+        <input type="text" name="search" placeholder="Search by title">
+        <button type="submit">Search</button>
+    </form>
+
+</div>
+<form action="{% url 'recipe_list' %}" method="GET">
+    <button type="submit">Clear</button>
+</form>
+
+{% if recipes %}
+
+{% for recipe in recipes %}
+<h2>{{ recipe.title }}</h2>
+<p>Category: {{ recipe.category_id.name }}</p>
+
+
+<form action="{% url 'recipe_detail' pk=recipe.pk %}" method="GET">
+    <button type="submit">Details</button>
+</form>
+
+{% endfor %}
+
+{% else %}
+<p>No recipes yet.</p>
+{% endif %}
+
+{% else %}
+
+<p>Sorry, you must be logged in to see this page</p>
+
+{% endif %}
+
+{% endblock %}

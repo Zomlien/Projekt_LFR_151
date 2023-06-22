@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block page_content %}
+
+{% if user.is_authenticated %}
+
+<h1>Categories</h1>
+{% if categories %}
+
+{% for category in categories %}
+<p>{{ category.name }}</p>
+{% endfor %}
+
+{% else %}
+<p>No categories yet.</p>
+
+{% endif %}
+<form action="{% url 'recipe_list' %}" method="GET">
+    <button type="submit">Back</button>
+</form>
+
+{% else %}
+
+<p>Sorry, you must be logged in to see this page</p>
+
+{% endif %}
+
+{% endblock %}
