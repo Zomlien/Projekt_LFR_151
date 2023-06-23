@@ -8,6 +8,8 @@
 <p>Steps: {{ recipe.directions }}</p>
 <p>Ingredients: {{ recipe.ingredient }}</p>
 <p>Creator: {{ recipe.creator.username }}</p>
+<p>Created on: {{ recipe.created_date }}</p>
+<p>Modifed on: {{ recipe.modified_date }}</p>
 
 <div class="button-group">
   {% if user == recipe.creator or user.is_superuser %}

@@ -8,8 +8,8 @@ urlpatterns = [
     path('register_user/', views.register_user, name="register_user"),
     path('view_user/', views.view_user, name="user_account"),
     path('password/', auth_views.PasswordChangeView.as_view(
-        template_name='/change_password.html',
-        success_url='/account/password_change_done'  # Remove the trailing slash here
+        template_name='registration/change_password.html',
+        success_url='/account/password_change_done'  
     ), name="password"),
     path('password_change_done', views.password_change_done, name="password_change_done"),
     path('delete_account/', views.delete_account, name='delete_account'),

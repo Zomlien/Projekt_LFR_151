@@ -6,7 +6,7 @@ from .models import Recipe, Category
 class RecipeViewsTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username='testuser', password='testpass')
-        self.category = Category.objects.create(categoryname='Test Category')
+        self.category = Category.objects.create(name='Test Category')
         self.recipe = Recipe.objects.create(
             category_id=self.category,
             title='Test Recipe',
@@ -25,4 +25,3 @@ class RecipeViewsTest(TestCase):
         response = self.client.get(reverse('recipe_create'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'recipe_create.html')
-

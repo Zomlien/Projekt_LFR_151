@@ -27,7 +27,7 @@ def login_user(request):
             messages.error(request, str(e))
             return redirect('login')
     else:
-        return render(request, 'authenticate/login.html', {})
+        return render(request, 'registration/login.html', {})
 
 
 def logout_user(request):
@@ -73,7 +73,7 @@ def register_user(request):
 @login_required
 def view_user(request):
     user = request.user
-    return render(request, 'authenticate/user_account.html', {'user': user})
+    return render(request, 'registration/user_account.html', {'user': user})
 
 
 @login_required
@@ -89,8 +89,8 @@ def delete_account(request):
             messages.error(request, "An error occurred during account deletion. Please try again later.")
             return redirect('view_user')
     else:
-        return render(request, 'authenticate/delete_account.html')
+        return render(request, 'registration/delete_account.html')
 
 
 def password_change_done(request):
-    return render(request, 'authenticate/password_change_done.html')
+    return render(request, 'registration/password_change_done.html')
