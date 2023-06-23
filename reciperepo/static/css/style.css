@@ -47,6 +47,10 @@ main {
     margin-bottom: 3em;
 }
 
+img{
+    max-height: 700px;
+}
+
 main>*,
 form>* {
     margin-top: 1em;
@@ -173,3 +177,4 @@ button:focus,
 .search-form button {
     margin-left: 10px;
 }
+
